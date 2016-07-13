@@ -19,7 +19,7 @@ from rest_framework import routers
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from core.views import AccountViewSet, LoginView, IndexView
+from core.views import IndexView, AccountViewSet, LoginView, LogoutView
 
 router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
@@ -28,9 +28,9 @@ admin.autodiscover()
 
 # urlpatterns = router.urls
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include(router.urls)),
-    # url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
-    # url(r'^.*$', AccountViewSet.as_view({'get':'list'}), name='index'),
-    url('^.*$', IndexView.as_view(), name='index'),
+    url(r'^.*$', IndexView.as_view(), name='index'),
+    url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
+    url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^admin/', admin.site.urls),
 ]
