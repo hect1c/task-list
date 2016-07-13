@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Account
 
 class AccountSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField()
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
 

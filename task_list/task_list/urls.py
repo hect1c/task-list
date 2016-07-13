@@ -26,11 +26,10 @@ router.register(r'accounts', AccountViewSet)
 
 admin.autodiscover()
 
-# urlpatterns = router.urls
 urlpatterns = [
     url(r'^api/v1/', include(router.urls)),
-    url(r'^.*$', IndexView.as_view(), name='index'),
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),
     url(r'^admin/', admin.site.urls),
+    url(r'^.*$', IndexView.as_view(), name='index')
 ]
