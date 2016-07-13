@@ -27,19 +27,19 @@
     function register() {
       Auth.register(vm.email, vm.password, vm.username);
     }
-  }
 
-  activate();
+    activate();
 
-  /**
-   * @name activate
-   * @desc Actions to be performed when this controller is instantiated
-   * @memberOf task_list.auth.controllers.RegisterController
-   */
-  function activate() {
-    // If the user is authenticated, they should not be here.
-    if (Auth.isAuthenticated()) {
-      $location.url('/');
+    /**
+     * @name activate
+     * @desc Actions to be performed when this controller is instantiated
+     * @memberOf task_list.auth.controllers.RegisterController
+     */
+    function activate() {
+      // If the user is authenticated, they should not be here.
+      if (Auth.isAuthenticated()) {
+        $location.url('/');
+      }
     }
   }
 })();
