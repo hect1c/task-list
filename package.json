@@ -1,0 +1,26 @@
+{
+  "name": "task-list",
+  "version": "1.0.0",
+  "description": "Task List App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "chmod +x ./scripts/postInstall.sh && ./scripts/postInstall.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hect1c/task-list.git"
+  },
+  "author": "Hartley Jean-Aimee <hartley.jeanaimee@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hect1c/task-list/issues"
+  },
+  "homepage": "https://github.com/hect1c/task-list#readme",
+  "dependencies": {
+    "bower": "1.7.9",
+    "gulp": "3.9.1",
+    "gulp-ng-annotate": "2.0.0",
+    "gulp-uglify": "1.5.4"
+  }
+}

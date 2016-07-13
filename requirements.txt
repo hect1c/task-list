@@ -1,4 +1,4 @@
 wheel==0.26.0
 Django==1.9.7
-djangorestframework==3.3.3
 django_compressor==2.0.0
+djangorestframework==3.3.3
