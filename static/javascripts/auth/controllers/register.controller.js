@@ -25,7 +25,7 @@
     * @memberOf task_list.auth.controllers.RegisterController
     */
     function register() {
-      Auth.register(vm.email, vm.password, vm.username);
+      Auth.register(vm.email, vm.password, vm.username, vm.first_name, vm.last_name);
     }
 
     activate();

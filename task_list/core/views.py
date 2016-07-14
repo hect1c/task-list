@@ -42,6 +42,8 @@ class AccountViewSet(viewsets.ModelViewSet):
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
 
+        print( serializer.is_valid() )
+
         if serializer.is_valid():
             Account.objects.create_user(**serializer.validated_data)
 
@@ -55,7 +57,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 class LoginView(views.APIView):
     def post(self, request, format=None):
-        data = request.data
+        data = json.loads(request.body)
 
         email = data.get('email', None)
         password = data.get('password', None)

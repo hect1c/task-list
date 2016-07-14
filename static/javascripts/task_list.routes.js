@@ -20,6 +20,8 @@
       controller: 'LoginController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/auth/login.html'
+    }).when('/logout', {
+      templateUrl: '/static/templates/auth/logout.html'
     }).otherwise('/');
   }
 })();

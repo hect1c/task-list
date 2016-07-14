@@ -24,6 +24,7 @@
       getAuthenticatedAccount: getAuthenticatedAccount,
       isAuthenticated: isAuthenticated,
       login: login,
+      logout: logout,
       register: register,
       setAuthenticatedAccount: setAuthenticatedAccount,
       unauthenticate: unauthenticate
@@ -42,11 +43,13 @@
     * @returns {Promise}
     * @memberOf task_list.auth.services.Auth
     */
-    function register(email, password, username) {
+    function register(email, password, username, first_name, last_name) {
       return $http.post('/api/v1/accounts/', {
         username: username,
         password: password,
-        email: email
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
       }).then(registerSuccessFn, registerErrorFn);
 
       /**
@@ -86,7 +89,7 @@
       function loginSuccessFn(data, status, headers, config) {
         Auth.setAuthenticatedAccount(data.data);
 
-        window.location = '/';
+        window.location = '/task-list';
       }
 
       /**
@@ -115,7 +118,7 @@
       function logoutSuccessFn(data, status, headers, config) {
         Auth.unauthenticate();
 
-        window.location = '/';
+        // window.location = '/logout';
       }
 
       /**
