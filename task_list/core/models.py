@@ -71,9 +71,12 @@ class Task(models.Model):
 
     # Create Fields
     name = models.CharField(max_length=100, unique=True)
-    description = models.TextField()
-    created = models.DateTimeField()
+    author = models.ForeignKey(Account)
+
     is_completed = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         """ Tell it to return as a unicode string (The name of the to-do item) rather than just Object. """

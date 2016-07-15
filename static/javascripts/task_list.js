@@ -6,17 +6,17 @@
       'task_list.config',
       'task_list.routes',
       'task_list.auth',
+      'task_list.utils',
       'task_list.layout',
+      'task_list.tasks',
     ]);
+
+
+  angular
+        .module('task_list.config', []);
 
   angular
     .module('task_list.routes', ['ngRoute']);
-
-  angular
-    .module('task_list.config', []);
-
-  angular
-    .module('task_list.auth', []);
 
   angular
     .module('task_list')

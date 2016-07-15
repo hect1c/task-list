@@ -1,0 +1,28 @@
+<div class="row">
+  <input type="checkbox" ng-model="vm.done" />
+  <span class="task__name done-{{vm.done}}">
+    {{task.name}}
+  </span>
+  <span class="task__meta">
+    <a href="/+{{ task.author.username }}">
+      +{{ task.author.username }}
+    </a>
+  </span>
+</div>
+<!-- <div class="row">
+  <div class="col-sm-12">
+    <div class="well">
+      <div class="task">
+        <div class="task__meta">
+          <a href="/+{{ task.author.username }}">
+            +{{ task.author.username }}
+          </a>
+        </div>
+
+        <div class="task__name">
+          {{ task.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

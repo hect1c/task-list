@@ -9,13 +9,13 @@
     .module('task_list.auth.services')
     .factory('Auth', Auth);
 
-  Auth.$inject = ['$cookies', '$http'];
+  Auth.$inject = ['$cookies', '$http', '$timeout'];
 
   /**
   * @namespace Auth
   * @returns {Factory}
   */
-  function Auth($cookies, $http) {
+  function Auth($cookies, $http, $timeout) {
     /**
     * @name Auth
     * @desc The Factory to be returned
@@ -33,6 +33,55 @@
     return Auth;
 
     ////////////////////
+    ///
+    ///
+    ////////////////////
+
+    /**
+     * @name getAuthenticatedAccount
+     * @desc Return the currently authenticated account
+     * @returns {object|undefined} Account if authenticated, else `undefined`
+     * @memberOf task_list.auth.services.Auth
+     */
+    function getAuthenticatedAccount() {
+      if (!$cookies.authenticatedAccount) {
+        return;
+      }
+
+      return JSON.parse($cookies.authenticatedAccount);
+    }
+
+    /**
+     * @name isAuthenticated
+     * @desc Check if the current user is authenticated
+     * @returns {boolean} True is user is authenticated, else false.
+     * @memberOf task_list.auth.services.Auth
+     */
+    function isAuthenticated() {
+      return !!$cookies.authenticatedAccount;
+    }
+
+    /**
+     * @name setAuthenticatedAccount
+     * @desc Stringify the account object and store it in a cookie
+     * @param {Object} user The account object to be stored
+     * @returns {undefined}
+     * @memberOf task_list.auth.services.Auth
+     */
+    function setAuthenticatedAccount(account) {
+      $cookies.authenticatedAccount = JSON.stringify(account);
+      console.log($cookies.authenticatedAccount);
+    }
+
+    /**
+     * @name unauthenticate
+     * @desc Delete the cookie where the user object is stored
+     * @returns {undefined}
+     * @memberOf task_list.auth.services.Auth
+     */
+    function unauthenticate() {
+      delete $cookies.authenticatedAccount;
+    }
 
     /**
     * @name register
@@ -88,8 +137,8 @@
        */
       function loginSuccessFn(data, status, headers, config) {
         Auth.setAuthenticatedAccount(data.data);
-
-        window.location = '/task-list';
+        
+        window.location = '/';
       }
 
       /**
@@ -118,7 +167,9 @@
       function logoutSuccessFn(data, status, headers, config) {
         Auth.unauthenticate();
 
-        // window.location = '/logout';
+        $timeout(function() {
+          window.location = '/';
+        }, 1000);
       }
 
       /**
@@ -129,51 +180,5 @@
         console.error('Whose ya daddy! Fail!');
       }
     }
-
-    /**
-     * @name getAuthenticatedAccount
-     * @desc Return the currently authenticated account
-     * @returns {object|undefined} Account if authenticated, else `undefined`
-     * @memberOf task_list.auth.services.Auth
-     */
-    function getAuthenticatedAccount() {
-      if (!$cookies.authenticatedAccount) {
-        return;
-      }
-
-      return JSON.parse($cookies.authenticatedAccount);
-    }
-
-    /**
-     * @name isAuthenticated
-     * @desc Check if the current user is authenticated
-     * @returns {boolean} True is user is authenticated, else false.
-     * @memberOf task_list.auth.services.Auth
-     */
-    function isAuthenticated() {
-      return !!$cookies.authenticatedAccount;
-    }
-
-    /**
-     * @name setAuthenticatedAccount
-     * @desc Stringify the account object and store it in a cookie
-     * @param {Object} user The account object to be stored
-     * @returns {undefined}
-     * @memberOf task_list.auth.services.Auth
-     */
-    function setAuthenticatedAccount(account) {
-      $cookies.authenticatedAccount = JSON.stringify(account);
-    }
-
-    /**
-     * @name unauthenticate
-     * @desc Delete the cookie where the user object is stored
-     * @returns {undefined}
-     * @memberOf task_list.auth.services.Auth
-     */
-    function unauthenticate() {
-      delete $cookies.authenticatedAccount;
-    }
-
   }
 })();

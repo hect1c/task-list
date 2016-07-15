@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Account
+from .models import Account, Task
 
 class AccountSerializer(serializers.ModelSerializer):
     email = serializers.EmailField()
@@ -31,3 +31,17 @@ class AccountSerializer(serializers.ModelSerializer):
             update_session_auth_hash(self.context.get('request'), instance)
 
             return instance
+
+class TaskSerializer(serializers.ModelSerializer):
+    author = AccountSerializer(read_only=True, required=False)
+
+    class Meta:
+        model = Task
+
+        fields = ('id', 'author', 'name', 'created_at', 'updated_at')
+        read_only_fields = ('id', 'created_at', 'updated_at')
+
+    def get_validation_exclusions(self, *args, **kwargs):
+        exclusions = super(TaskSerializer, self).get_validation_exclusions()
+
+        return exclusions + ['author']

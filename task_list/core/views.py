@@ -9,9 +9,9 @@ from django.utils.decorators import method_decorator
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
 
-from core.models import Task, Account
-from core.permissions import IsAccountOwner
-from core.serializers import AccountSerializer
+from core.models import Account, Task
+from core.permissions import IsAccountOwner, IsAuthorOfTask
+from core.serializers import AccountSerializer, TaskSerializer
 
 
 class IndexView(TemplateView):
@@ -23,7 +23,7 @@ class IndexView(TemplateView):
 
 class AccountViewSet(viewsets.ModelViewSet):
     """
-    A viewset that provides the standard actions
+    A viewset that provides the standard account actions
     """
 
     lookup_field = 'email'
@@ -41,8 +41,6 @@ class AccountViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
-
-        print( serializer.is_valid() )
 
         if serializer.is_valid():
             Account.objects.create_user(**serializer.validated_data)
@@ -89,3 +87,27 @@ class LogoutView(views.APIView):
         logout(request)
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.order_by('-created_at')
+    serializer_class = TaskSerializer
+
+    def get_permissions(self):
+        if self.request.method in permissions.SAFE_METHODS:
+            return (permissions.AllowAny(),)
+        return (permissions.IsAuthenticated(), IsAuthorOfTask(),)
+
+    def perform_create(self, serializer):
+        instance = serializer.save(author=self.request.user)
+
+        return super(TaskViewSet, self).perform_create(serializer)
+
+class AccountTasksViewSet(viewsets.ViewSet):
+    queryset = Task.objects.select_related('author').all()
+    serializer_class = TaskSerializer
+
+    def list(self, request, account_username=None):
+        queryset = self.queryset.filter(author__username=account_username)
+        serializer = self.serializer_class(queryset, many=True)
+
+        return Response(serializer.data)

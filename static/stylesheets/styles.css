@@ -1,3 +1,26 @@
+.task-list-app {
+  background: #fff;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 130px;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+              0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.task-list-container {
+  margin: 10px;
+  font-size: 20px;
+}
+
+.task-list-item {
+  margin: 10px 10px;
+}
+
+.task-list li {
+  border-bottom: 1px solid #ededed;
+}
+
 .vertical-center {
   height: 40%;
   width: 70%;
@@ -18,4 +41,26 @@
 
 .content > p {
   font-size: 24px;
+}
+
+.no-tasks-here {
+  text-align: center;
+}
+
+.task {}
+
+.task .task__meta {
+  font-weight: bold;
+  text-align: right;
+  padding-bottom: 19px;
+}
+
+.task .task__meta a:hover {
+  text-decoration: none;
+}
+
+.btn-add-new-task {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }

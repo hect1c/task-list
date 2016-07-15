@@ -1,0 +1,42 @@
+<div class="row task-list-app" ng-cloak>
+  <!-- <header id="header">
+    <a class="btn btn-primary btn-fab btn-raised mdi-content-add btn-add-new-task"
+      href="javascript:void(0)"
+      ng-show="vm.isAuthenticated"
+      ng-dialog="/static/templates/tasks/new-task.html"
+      ng-dialog-controller="NewTaskController as vm"></a>
+  </header> -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group task-list-container">
+        <input id="task__name" placeholder="Enter Task" ng-model="vm.name" class="ng-valid ng-dirty ng-touched form-control" />
+        <span class="input-group-btn">
+          <button type="submit" ng-click="vm.create()" class="btn btn-primary">
+            Add
+          </button>
+          <!-- <button type="submit" class="btn btn-info">
+            Edit
+          </button>
+          <button type="submit" class="btn btn-danger">
+            Delete
+          </button> -->
+        </span>
+      </div>
+      <hr style="border: 1px dashed #ededed" />
+    </div>
+  </div>
+  <div class="row task-list-item">
+    <div class="task-list-container" ng-repeat="item in vm.items">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div ng-repeat="task in item">
+          <task task="task"></task>
+        </div>
+      </div>
+    </div>
+    <div ng-hide="vm.items && vm.items.length">
+      <div class="col-sm-12 no-tasks-here">
+        <em>The are no tasks here.</em>
+      </div>
+    </div>
+  </div>
+</div>

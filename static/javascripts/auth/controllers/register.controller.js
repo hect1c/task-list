@@ -38,7 +38,7 @@
     function activate() {
       // If the user is authenticated, they should not be here.
       if (Auth.isAuthenticated()) {
-        $location.url('/');
+        $location.url('/tasks');
       }
     }
   }

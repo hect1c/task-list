@@ -16,7 +16,7 @@
   */
   function LoginController($location, $scope, Auth) {
     var vm = this;
-
+    
     vm.login = login;
 
     activate();
