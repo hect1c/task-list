@@ -9,12 +9,12 @@
     .module('task_list.layout.controllers')
     .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$scope', '$location', 'Auth', 'Tasks', 'Snackbar'];
+  IndexController.$inject = ['$scope', '$location','$controller', 'Auth', 'Tasks', 'Snackbar'];
 
   /**
   * @namespace IndexController
   */
-  function IndexController($scope, $location, Auth, Tasks, Snackbar) {
+  function IndexController($scope, $location, $controller, Auth, Tasks, Snackbar) {
     var vm = this;
 
     vm.tasks = [];
@@ -27,13 +27,14 @@
     * @memberOf task_list.layout.controllers.IndexController
     */
     function activate() {
+
       /**
        * Redirect to login page if not authenticated
        * @param  {Boolean} !Auth.isAuthenticated
        */
-      // if( !Auth.isAuthenticated() ){
-      //   $location.url('/login');
-      // }
+      if( !Auth.isAuthenticated() ){
+        $location.url('/login');
+      }
 
       Tasks.all().then(tasksSuccessFn, tasksErrorFn);
 
