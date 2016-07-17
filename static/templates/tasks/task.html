@@ -1,50 +1,48 @@
 <div class="row task__list">
-  <form class="form-horionzal" editable-form name="editableForm" onaftersave="vm.update(task)">
+  <form class="form-horizontal" editable-form name="editableForm" onaftersave="vm.update(task)">
     <div class="form-group">
 
-      <span class="col-md-2 title">Name: </span>
+      <label class="col-md-2 title">Name: </label>
       <div class="col-md-10">
-        <span class="task__name done-{{vm.done}}" e-name="task__name" editable-text="task.name" e-required e-placeholder="Enter Task">
+        <span class="task__name done-{{vm.done}} form-control" e-name="task__name" editable-text="task.name" e-required e-placeholder="Enter Task">
           {{ (task.name || 'empty') }}
         </span>
       </div>
 
-      <span class="col-md-2 title">Description: </span>
+      <label class="col-md-2 title">Description: </label>
       <div class="col-md-10">
-        <span class="task__description" e-name="task__description" e-rows="3" editable-textarea="task.description" e-required e-placeholder="Enter Description">
+        <span class="task__description form-control" e-name="task__description" e-rows="3" editable-textarea="task.description" e-required e-placeholder="Enter Description">
           {{ (task.description || 'empty') }}
         </span>
       </div>
 
-      <span class="col-md-2">Status: </span>
+      <label class="col-md-2 title">Status: </label>
       <div class="col-md-10">
-        <span class="task__status" ng-model="task.status" editable-select="task.status" e-required e-name="task__status" e-ng-options="opt.value as opt.text for opt in options">
+        <span class="task__status form-control" ng-model="task.status" editable-select="task.status" e-required e-name="task__status" e-ng-options="opt.value as opt.text for opt in options">
           {{ ( options | filter: {value: task.status})[0].text || 'Not set' }}
         </span>
       </div>
 
-      <div class="col-md-12">
 
-      <span class="input-group-btn">
-        <!-- <div class="buttons"> -->
-          <!-- button to show form -->
-          <button type="button" class="btn btn-info" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-            Edit
+      <div class="input-group-btn button-grp">
+        <!-- button to show form -->
+        <button type="button" class="btn btn-info" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+          Edit
+        </button>
+        <!-- buttons to submit / cancel form -->
+        <span ng-show="editableForm.$visible">
+          <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+            Save
           </button>
-          <!-- buttons to submit / cancel form -->
-          <span ng-show="editableForm.$visible">
-            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-              Save
-            </button>
-            <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-              Cancel
-            </button>
-          </span>
-        <!-- </div> -->
+          <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+            Cancel
+          </button>
+        </span>
+        <!-- button to delete -->
         <button type="submit" ng-click="vm.del()" class="btn btn-danger">
           Delete
         </button>
-      </span></div>
+      </div>
     </div>
 
     <!-- <a href="#" class="task__name done-{{vm.done}}"  editable-text="task.name" e-style="color: green" e-required e-placeholder="Enter name" onbeforesave="vm.update(task)">
