@@ -156,3 +156,4 @@ npm-debug.log
 
 # Custom ignore
 task_list/staticfiles/
+.tags
