@@ -45,22 +45,8 @@
         vm.tasks.shift();
       });
 
-      // $scope.$on('task.updated', function (event, task) {
-        // console.log(task);
-        // var originalTasks = vm.tasks.slice(0);
-
-        // console.log(originalTasks);
-				// return $http.put('/api/todos/' + todo.id, todo)
-				// 	.then(function success() {
-				// 		return store.todos;
-				// 	}, function error() {
-				// 		angular.copy(originalTodos, store.todos);
-				// 		return originalTodos;
-				// 	});
-      // });
-
-      $scope.$on('task.updated.error', function() {
-        // console.log()
+      $scope.$on('task.deleted', function (event, index) {
+        vm.tasks.splice(index, 1);
       })
 
       /**

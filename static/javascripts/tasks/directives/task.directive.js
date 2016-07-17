@@ -23,7 +23,8 @@
       controllerAs: 'vm',
       restrict: 'E',
       scope: {
-        task: '='
+        task: '=',
+        index: '@'
       },
       templateUrl: '/static/templates/tasks/task.html'
     };

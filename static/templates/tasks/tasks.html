@@ -18,7 +18,7 @@
   <div class="row task-list-item">
     <div class="task-list-container" ng-repeat="item in vm.items">
       <div ng-repeat="task in item">
-        <task task="task"></task>
+        <task  index="{{$index}}" task="task"></task>
       </div>
     </div>
     <div ng-hide="vm.items && vm.items.length">

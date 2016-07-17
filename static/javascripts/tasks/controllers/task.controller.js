@@ -22,6 +22,8 @@
       {value: true, text: 'Done'}
     ];
 
+    // $scope.destroy = destroy;
+
     vm.update = update;
     vm.destroy = destroy;
 
@@ -30,8 +32,9 @@
     * @desc Destroy this task
     * @memberOf task_list.tasks.controllers.TaskController
     */
-    function destroy(task) {
-      console.log(task);
+    function destroy(index) {
+      $rootScope.$broadcast('task.deleted', index);
+
       Tasks.destroy(task).then(taskSuccessFn, taskErrorFn);
 
       /**
