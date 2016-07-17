@@ -32,10 +32,10 @@
     * @desc Destroy this task
     * @memberOf task_list.tasks.controllers.TaskController
     */
-    function destroy(index) {
-      $rootScope.$broadcast('task.deleted', index);
+    function destroy(data) {
+      $rootScope.$broadcast('task.deleted', data.index);
 
-      Tasks.destroy(task).then(taskSuccessFn, taskErrorFn);
+      Tasks.destroy(data.task).then(taskSuccessFn, taskErrorFn);
 
       /**
       * @name taskSuccessFn

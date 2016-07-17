@@ -156,4 +156,7 @@ npm-debug.log
 
 # Custom ignore
 task_list/staticfiles/
+
+# Atom IDE files
 .tags
+.tags_swap
