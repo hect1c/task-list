@@ -70,17 +70,14 @@ class Account(AbstractBaseUser):
 class Task(models.Model):
 
     # Create Fields
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100)
     author = models.ForeignKey(Account)
 
-    is_completed = models.BooleanField(default=False)
+    description = models.CharField(max_length=100, blank=True)
+    status = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def __unicode__(self):
-        """ Tell it to return as a unicode string (The name of the to-do item) rather than just Object. """
-        return self.name
 
     class Meta:
         app_label = 'task_list'

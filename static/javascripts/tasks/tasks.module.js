@@ -9,7 +9,7 @@
     ]);
 
   angular
-    .module('task_list.tasks.controllers', []);
+    .module('task_list.tasks.controllers', ['xeditable']);
 
   angular
     .module('task_list.tasks.directives', ['ngDialog']);

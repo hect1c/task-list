@@ -17,45 +17,63 @@
   function TaskController($rootScope, $scope, Auth, Snackbar, Tasks) {
     var vm = this;
 
-    // vm.create = create;
-    // vm.edit = edit;
-    // vm.delte = delete;
+    $scope.options = [
+      {value: false, text: 'Not Done'},
+      {value: true, text: 'Done'}
+    ];
 
-    // /**
-    // * @name create
-    // * @desc Create a new Task
-    // * @memberOf task_list.tasks.controllers.TaskController
-    // */
-    // function create() {
-    //   $rootScope.$broadcast('task.created', {
-    //     name: vm.name,
-    //     author: {
-    //       username: Auth.getAuthenticatedAccount().username
-    //     }
-    //   });
-    //
-    //   $scope.closeThisDialog();
-    //
-    //   Tasks.create(vm.name).then(createTaskSuccessFn, createTaskErrorFn);
-    //
-    //
-    //   /**
-    //   * @name createTaskSuccessFn
-    //   * @desc Show snackbar with success message
-    //   */
-    //   function createTaskSuccessFn(data, status, headers, config) {
-    //     Snackbar.show('Success! Task created.');
-    //   }
-    //
-    //
-    //   /**
-    //   * @name createTaskErrorFn
-    //   * @desc Propogate error event and show snackbar with error message
-    //   */
-    //   function createTaskErrorFn(data, status, headers, config) {
-    //     $scope.$broadcast('task.created.error');
-    //     Snackbar.error(data.error);
-    //   }
-    // }
+    vm.update = update;
+    vm.destroy = destroy;
+
+    /**
+    * @name destroy
+    * @desc Destroy this task
+    * @memberOf task_list.tasks.controllers.TaskController
+    */
+    function destroy(task) {
+      console.log(task);
+      Tasks.destroy(task).then(taskSuccessFn, taskErrorFn);
+
+      /**
+      * @name taskSuccessFn
+      * @desc Display success snackbar
+      */
+      function taskSuccessFn(data, status, headers, config) {
+        Snackbar.show('Your task has been deleted.');
+      }
+
+      /**
+      * @name taskErrorFn
+      * @desc Display error snackbar
+      */
+      function taskErrorFn(data, status, headers, config) {
+        Snackbar.error(data.error);
+      }
+    }
+
+    /**
+    * @name update
+    * @desc Update this task
+    * @memberOf task_list.tasks.controllers.TaskController
+    */
+    function update(task) {
+      Tasks.update(task).then(updateTaskSuccessFn, updateTaskErrorFn);
+
+      /**
+       * @name taskSuccessFn
+       * @desc Show success snackbar
+       */
+       function updateTaskSuccessFn(data, status, headers, config) {
+         Snackbar.show('Your task has been updated.');
+       }
+
+       /**
+       * @name taskErrorFn
+       * @desc Show error snackbar
+       */
+       function updateTaskErrorFn(data, status, headers, config) {
+         Snackbar.error(data.error);
+       }
+    }
   }
 })();

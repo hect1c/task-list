@@ -8,6 +8,15 @@
               0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
+.input-group-btn {
+  margin-top: 10px !important;
+}
+
+.title {
+  font-size: 18px;
+  color: #555;
+}
+
 .task-list-container {
   margin: 10px;
   font-size: 20px;
@@ -17,16 +26,15 @@
   margin: 10px 10px;
 }
 
-.task-list li {
+.task__list {
+  padding: 5px 20px;
   border-bottom: 1px solid #ededed;
 }
 
 .vertical-center {
   height: 40%;
   width: 70%;
-
   margin: 0 auto;
-
   display: flex;
   align-items: center;
 }
@@ -59,8 +67,17 @@
   text-decoration: none;
 }
 
-.btn-add-new-task {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+.btn-add-task {
+  width: 100%;
+}
+
+input[type=checkbox] {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0,0,0, .54);
+    border-radius: 2px;
+    overflow: hidden;
+    z-index: 1;
 }

@@ -1,0 +1,40 @@
+<form class="add-task-form" role="form" ng-submit="vm.submit()">
+  <fieldset>
+    <legend>Add Task</legend>
+    <div class="form-group">
+
+      <!-- Task Name -->
+      <label for="task__name" class="col-md-2 control-label">
+        Name</label>
+      <div class="col-md-10">
+        <input id="task__name" placeholder="Task Name" ng-model="vm.name" class="ng-valid ng-dirty ng-touched form-control" />
+      </div>
+
+      <!-- Task Description -->
+      <label for="task__description" class="col-md-2 control-label">
+        Description</label>
+      <div class="col-md-10">
+        <textarea class="form-control"
+                  id="task__description"
+                  rows="3"
+                  placeholder="ex. Details regarding the task"
+                  ng-model="vm.description">
+        </textarea>
+      </div>
+
+      <!-- Task Status -->
+      <label for="task__status" class="col-md-2 control-label">Select</label>
+      <div class="col-md-10">
+        <select class="form-control" ng-model="vm.status" id="task__status">
+          <option value="false">Not Done</option>
+          <option value="true">Done</option>
+        </select>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary btn-raised">
+        Submit
+      </button>
+    </div>
+  </fieldset>
+</form>
