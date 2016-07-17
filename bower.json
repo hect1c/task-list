@@ -18,6 +18,7 @@
     "bootstrap-material-design": "0.5.10",
     "jquery": "^2.2.4",
     "underscore": "1.8.3",
-    "ng-dialog": "0.6.2"
+    "ng-dialog": "0.6.2",
+    "angular-xeditable": "0.2.0"
   }
 }

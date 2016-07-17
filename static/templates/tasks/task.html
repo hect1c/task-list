@@ -1,28 +1,64 @@
-<div class="row">
-  <input type="checkbox" ng-model="vm.done" />
-  <span class="task__name done-{{vm.done}}">
-    {{task.name}}
-  </span>
-  <span class="task__meta">
-    <a href="/+{{ task.author.username }}">
-      +{{ task.author.username }}
-    </a>
-  </span>
-</div>
-<!-- <div class="row">
-  <div class="col-sm-12">
-    <div class="well">
-      <div class="task">
-        <div class="task__meta">
-          <a href="/+{{ task.author.username }}">
-            +{{ task.author.username }}
-          </a>
-        </div>
+<div class="row task__list">
+  <form class="form-horionzal" editable-form name="editableForm" onaftersave="vm.update(task)">
+    <div class="form-group">
 
-        <div class="task__name">
-          {{ task.name }}
-        </div>
+      <span class="col-md-2 title">Name: </span>
+      <div class="col-md-10">
+        <span class="task__name done-{{vm.done}}" e-name="task__name" editable-text="task.name" e-required e-placeholder="Enter Task">
+          {{ (task.name || 'empty') }}
+        </span>
       </div>
+
+      <span class="col-md-2 title">Description: </span>
+      <div class="col-md-10">
+        <span class="task__description" e-name="task__description" e-rows="3" editable-textarea="task.description" e-required e-placeholder="Enter Description">
+          {{ (task.description || 'empty') }}
+        </span>
+      </div>
+
+      <span class="col-md-2">Status: </span>
+      <div class="col-md-10">
+        <span class="task__status" ng-model="task.status" editable-select="task.status" e-required e-name="task__status" e-ng-options="opt.value as opt.text for opt in options">
+          {{ ( options | filter: {value: task.status})[0].text || 'Not set' }}
+        </span>
+      </div>
+
+      <div class="col-md-12">
+
+      <span class="input-group-btn">
+        <!-- <div class="buttons"> -->
+          <!-- button to show form -->
+          <button type="button" class="btn btn-info" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+            Edit
+          </button>
+          <!-- buttons to submit / cancel form -->
+          <span ng-show="editableForm.$visible">
+            <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+              Save
+            </button>
+            <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+              Cancel
+            </button>
+          </span>
+        <!-- </div> -->
+        <button type="submit" ng-click="vm.del()" class="btn btn-danger">
+          Delete
+        </button>
+      </span></div>
     </div>
-  </div>
-</div> -->
+
+    <!-- <a href="#" class="task__name done-{{vm.done}}"  editable-text="task.name" e-style="color: green" e-required e-placeholder="Enter name" onbeforesave="vm.update(task)">
+      {{ (task.name || 'empty') }}
+    </a> -->
+      <!-- <span class="task__meta">
+        <p>{{ (task.description || 'empty') }}</p>
+        <a href="/+{{ task.author.username }}">
+          +{{ task.author.username }}
+        </a>
+      </span> -->
+    <!-- </span> -->
+
+
+
+  </form>
+</div>

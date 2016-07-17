@@ -19,6 +19,8 @@
     * @memberOf task_list.tasks.directives.Task
     */
     var directive = {
+      controller: 'TaskController',
+      controllerAs: 'vm',
       restrict: 'E',
       scope: {
         task: '='

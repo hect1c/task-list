@@ -18,7 +18,6 @@
     var vm = this;
 
     vm.items = [];
-    vm.create = create;
 
     activate();
 
@@ -42,40 +41,6 @@
       if (current !== original) {
         vm.items = [];
         vm.items.push(current);
-      }
-    }
-
-    /**
-    * @name create
-    * @desc Create a new Task
-    * @memberOf task_list.tasks.controllers.TaskController
-    */
-    function create() {
-      $rootScope.$broadcast('task.created', {
-        name: vm.name,
-        author: {
-          username: 'hartley.jeanaimee1@gmail.com'
-        }
-      });
-
-      Tasks.create(vm.name).then(createTaskSuccessFn, createTaskErrorFn);
-
-
-      /**
-      * @name createTaskSuccessFn
-      * @desc Show snackbar with success message
-      */
-      function createTaskSuccessFn(data, status, headers, config) {
-        Snackbar.show('Success! Task created.');
-      }
-
-      /**
-      * @name createTaskErrorFn
-      * @desc Propogate error event and show snackbar with error message
-      */
-      function createTaskErrorFn(data, status, headers, config) {
-        $scope.$broadcast('task.created.error');
-        Snackbar.error(data.error);
       }
     }
   }
