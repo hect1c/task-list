@@ -23,19 +23,40 @@
     ];
 
     vm.update = update;
+    vm.destroy = destroy;
+
+    /**
+    * @name destroy
+    * @desc Destroy this task
+    * @memberOf task_list.tasks.controllers.TaskController
+    */
+    function destroy(task) {
+      console.log(task);
+      Tasks.destroy(task).then(taskSuccessFn, taskErrorFn);
+
+      /**
+      * @name taskSuccessFn
+      * @desc Display success snackbar
+      */
+      function taskSuccessFn(data, status, headers, config) {
+        Snackbar.show('Your task has been deleted.');
+      }
+
+      /**
+      * @name taskErrorFn
+      * @desc Display error snackbar
+      */
+      function taskErrorFn(data, status, headers, config) {
+        Snackbar.error(data.error);
+      }
+    }
 
     /**
     * @name update
     * @desc Update this task
-    * @memberOf task_list.tasks.controllers.ProfileSettingsController
+    * @memberOf task_list.tasks.controllers.TaskController
     */
     function update(task) {
-      $rootScope.$broadcast('task.updated', {
-        name: task.name,
-        description: task.description,
-        status: task.status
-      });
-
       Tasks.update(task).then(updateTaskSuccessFn, updateTaskErrorFn);
 
       /**

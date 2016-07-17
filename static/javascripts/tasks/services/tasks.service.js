@@ -20,7 +20,7 @@
       all: all,
       create: create,
       update: update,
-      // delete: delete,
+      destroy: destroy,
       get: get
     };
 
