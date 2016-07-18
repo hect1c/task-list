@@ -10,6 +10,7 @@
 
 .input-group-btn {
   margin-top: 10px !important;
+  padding-top: 20px !important;
 }
 
 .title {
@@ -78,4 +79,8 @@
 .text__meta {
   margin-top: 10px;
   font-size: 12px;
+}
+
+.active {
+  background-color: #e4e4e4 !important;
 }

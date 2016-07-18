@@ -9,17 +9,39 @@
     .module('task_list.tasks.controllers')
     .controller('TasksController', TasksController);
 
-  TasksController.$inject = ['$rootScope', '$scope', 'Auth', 'Tasks', 'Snackbar'];
+  TasksController.$inject = ['$rootScope', '$scope', '$routeParams', 'Auth', 'Tasks', 'Snackbar'];
 
   /**
   * @namespace TasksController
   */
-  function TasksController($rootScope, $scope, Auth, Tasks, Snackbar) {
+  function TasksController($rootScope, $scope, $routeParams, Auth, Tasks, Snackbar) {
     var vm = this;
 
     vm.items = [];
+    vm.statusFilter = statusFilter;
 
     activate();
+
+    /**
+     * @name statusFilter
+     * @desc Filters based on selected Mode
+     */
+    function statusFilter(tasks) {
+      $scope.mode = $routeParams.mode;
+
+      return function( task ){
+        var status = ($scope.mode === 'active') ?
+          false : ($scope.mode === 'completed') ? true : '';
+
+        //show all
+        if( status === '' ){
+          $scope.mode = '';
+          return task;
+        }
+
+        return task.status === status;
+      }
+    }
 
     /**
     * @name activate

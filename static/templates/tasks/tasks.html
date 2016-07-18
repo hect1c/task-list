@@ -3,13 +3,28 @@
     <div class="col-lg-12">
       <div class="input-group task-list-container">
         <div class="row">
-          <span class="input-group-btn">
-          <a class="btn btn-primary btn-raised btn-add-task"
-            href="javascript:void(0)"
-            ng-dialog="/static/templates/tasks/add-task.html"
-            ng-dialog-controller="AddTaskController as vm"
-            >Add New Task</a>
-          </span>
+          <div class="col-md-4">
+            <span class="input-group-btn">
+            <a class="btn btn-primary btn-raised btn-add-task"
+              href="javascript:void(0)"
+              ng-dialog="/static/templates/tasks/add-task.html"
+              ng-dialog-controller="AddTaskController as vm"
+              >Add New Task</a>
+            </span>
+          </div>
+          <div class="col-md-8">
+            <ul id="filters" class="pager">
+              <li>
+                <a class="withripple" ng-class="{active: mode == ''}" href="/">All</a>
+              </li>
+              <li>
+                <a class="withripple" ng-class="{active: mode == 'active'}" href="/?mode=active">Active</a>
+              </li>
+              <li>
+                <a class="withripple" ng-class="{active: mode == 'completed'}" href="/?mode=completed">Completed</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <hr style="margin: 0; border: 1px dashed #ededed" />
@@ -17,8 +32,8 @@
   </div>
   <div class="row task-list-item">
     <div class="task-list-container" ng-repeat="item in vm.items">
-      <div ng-repeat="task in item">
-        <task  index="{{$index}}" task="task"></task>
+      <div ng-repeat="task in item | filter:vm.statusFilter(item)">
+        <task index="{{$index}}" task="task"></task>
       </div>
     </div>
     <div ng-hide="vm.items && vm.items.length">
