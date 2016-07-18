@@ -33,15 +33,16 @@ class AccountSerializer(serializers.ModelSerializer):
             return instance
 
 class TaskSerializer(serializers.ModelSerializer):
-    author = AccountSerializer(read_only=True, required=False)
+    created_by = AccountSerializer(read_only=True, required=False)
+    updated_by = AccountSerializer(read_only=True, required=False)
 
     class Meta:
         model = Task
 
-        fields = ('id', 'author', 'name', 'description', 'status', 'created_at', 'updated_at')
+        fields = ('id', 'created_by', 'updated_by', 'name', 'description', 'status', 'created_at', 'updated_at')
         read_only_fields = ('id', 'created_at', 'updated_at')
 
     def get_validation_exclusions(self, *args, **kwargs):
         exclusions = super(TaskSerializer, self).get_validation_exclusions()
 
-        return exclusions + ['author']
+        return exclusions + ['created_by', 'updated_by']

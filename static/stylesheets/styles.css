@@ -18,12 +18,16 @@
 }
 
 .task-list-container {
-  margin: 10px;
+  margin: 0 10px 0 10px;
   font-size: 20px;
 }
 
+.input-group.task-list-container {
+  margin-top: 10px;
+}
+
 .task-list-item {
-  margin: 10px 10px;
+  margin: 0 10px 0 10px;
 }
 
 .task__list {
@@ -71,13 +75,7 @@
   width: 100%;
 }
 
-input[type=checkbox] {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(0,0,0, .54);
-    border-radius: 2px;
-    overflow: hidden;
-    z-index: 1;
+.text__meta {
+  margin-top: 10px;
+  font-size: 12px;
 }

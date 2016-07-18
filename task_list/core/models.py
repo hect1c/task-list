@@ -71,7 +71,9 @@ class Task(models.Model):
 
     # Create Fields
     name = models.CharField(max_length=100)
-    author = models.ForeignKey(Account)
+
+    created_by = models.ForeignKey(Account, related_name="created_by")
+    updated_by = models.ForeignKey(Account, related_name="updated_by")
 
     description = models.CharField(max_length=100, blank=True)
     status = models.BooleanField(default=False)

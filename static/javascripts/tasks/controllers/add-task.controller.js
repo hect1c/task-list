@@ -29,9 +29,11 @@
         name: vm.name,
         description: vm.description,
         status: vm.status,
-        author: {
-          username: 'hartley.jeanaimee1@gmail.com' //@todo fix issue with Auth
-          // username: Auth.getAuthenticatedAccount().username
+        created_by: {
+          username: Auth.getAuthenticatedAccount().username
+        },
+        updated_by: {
+          username: Auth.getAuthenticatedAccount().username
         }
       });
 

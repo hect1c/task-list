@@ -1,0 +1,43 @@
+[
+  {
+    "model": "task_list.Account",
+    "pk": 1,
+    "fields": {
+      "email": "admin@admin.com",
+      "username": "admin",
+      "first_name": "John",
+      "last_name": "Lennon",
+      "password": "testtest",
+      "is_admin": true,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Account",
+    "pk": 2,
+    "fields": {
+      "email": "user@user.com",
+      "username": "user",
+      "first_name": "Billy",
+      "last_name": "Joel",
+      "password": "testtest",
+      "is_admin": true,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 1,
+    "fields": {
+      "name": "Task 1 Dummy",
+      "description": "Here is an example of task 1 description dummy.",
+      "created_by": 1,
+      "updated_by": 1,
+      "status": false,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  }
+]

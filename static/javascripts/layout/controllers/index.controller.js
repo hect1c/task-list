@@ -48,7 +48,21 @@
 
       $scope.$on('task.deleted', function (event, index) {
         vm.tasks.splice(index, 1);
-      })
+      });
+
+      /**
+       * listeners to revert any edits or updates
+       * No longer necessary since just hid buttons
+       * based on Auth account
+       */
+
+      // $scope.$on('task.reverted', function (event, data) {
+      //   vm.tasks[data.index] = data.original;
+      // });
+      //
+      // $scope.$on('task.updated', function (event, data) {
+      //   vm.tasks[data.index] = data.task;
+      // });
 
       /**
       * @name tasksSuccessFn

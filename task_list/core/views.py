@@ -95,19 +95,30 @@ class TaskViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return (permissions.AllowAny(),)
+
+        # allow update of obj.status
+        if self.request.method == 'PUT' and self.request.data.get('flag'):
+            return (permissions.AllowAny(),)
+
         return (permissions.IsAuthenticated(), IsAuthorOfTask(),)
 
     def perform_create(self, serializer):
-        instance = serializer.save(author=self.request.user)
+        instance_created_by = serializer.save(created_by=self.request.user)
+        instance_updated_by = serializer.save(updated_by=self.request.user)
 
         return super(TaskViewSet, self).perform_create(serializer)
 
+    def perform_update(self, serializer):
+        instance = serializer.save(updated_by=self.request.user)
+
+        return super(TaskViewSet, self).perform_update(serializer)
+
 class AccountTasksViewSet(viewsets.ViewSet):
-    queryset = Task.objects.select_related('author').all()
+    queryset = Task.objects.select_related('created_by').all()
     serializer_class = TaskSerializer
 
     def list(self, request, account_username=None):
-        queryset = self.queryset.filter(author__username=account_username)
+        queryset = self.queryset.filter(created_by__username=account_username)
         serializer = self.serializer_class(queryset, many=True)
 
         return Response(serializer.data)

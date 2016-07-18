@@ -9,13 +9,13 @@
     .module('task_list.auth.services')
     .factory('Auth', Auth);
 
-  Auth.$inject = ['$cookies', '$http', '$timeout'];
+  Auth.$inject = ['$cookies', '$http', '$timeout', 'Snackbar'];
 
   /**
   * @namespace Auth
   * @returns {Factory}
   */
-  function Auth($cookies, $http, $timeout) {
+  function Auth($cookies, $http, $timeout, Snackbar) {
     /**
     * @name Auth
     * @desc The Factory to be returned
@@ -68,6 +68,7 @@
       * @desc Log "I pity the fool!" to the console
       */
       function registerErrorFn(data, status, headers, config) {
+        Snackbar.error(data.data.message);
         console.error('I pity the fool! Fail !');
       }
     }
@@ -100,6 +101,7 @@
        * @desc Log "FINISH HIM, FATALITY!" to the console
        */
       function loginErrorFn(data, status, headers, config) {
+        Snackbar.error(data.data.message);
         console.error('FINISH HIM, FATALITY!');
       }
     }
@@ -131,6 +133,7 @@
        * @desc Log "Whose ya daddy! Fail!" to the console
        */
       function logoutErrorFn(data, status, headers, config) {
+        Snackbar.error(data.data.message);
         console.error('Whose ya daddy! Fail!');
       }
     }

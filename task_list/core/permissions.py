@@ -9,5 +9,5 @@ class IsAccountOwner(permissions.BasePermission):
 class IsAuthorOfTask(permissions.BasePermission):
     def has_object_permission(self, request, view, task):
         if request.user:
-            return task.author == request.user
+            return task.created_by == request.user
         return False

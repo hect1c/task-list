@@ -21,7 +21,8 @@
       create: create,
       update: update,
       destroy: destroy,
-      get: get
+      get: get,
+      get_task: get_task
     };
 
     return Tasks;
@@ -45,12 +46,13 @@
     * @returns {Promise}
     * @memberOf task_list.tasks.services.Tasks
     */
-    function create(name, description, status, author) {
+    function create(name, description, status, created_by, updated_by) {
       return $http.post('/api/v1/tasks/', {
         name: name,
         description: description,
         status: status,
-        author: author
+        created_by: created_by,
+        updated_by: updated_by
       });
     }
 
@@ -61,8 +63,8 @@
     * @returns {Promise}
     * @memberOf task_list.tasks.services.Tasks
     */
-    function update(tasks) {
-      return $http.put('/api/v1/tasks/' + tasks.id + '/', tasks);
+    function update(task) {
+      return $http.put('/api/v1/tasks/' + task.id + '/', task);
     }
 
     /**
@@ -72,8 +74,8 @@
     * @returns {Promise}
     * @memberOf thinkster.profiles.services.Profile
     */
-    function destroy(tasks) {
-      return $http.delete('/api/v1/tasks/' + tasks.id + '/');
+    function destroy(task) {
+      return $http.delete('/api/v1/tasks/' + task.id + '/');
     }
 
     /**
@@ -85,6 +87,10 @@
      */
     function get(username) {
       return $http.get('/api/v1/accounts/' + username + '/tasks/');
+    }
+
+    function get_task(task) {
+      return $http.get('/api/v1/tasks/' + task.id + '/tasks/');
     }
   }
 })();
