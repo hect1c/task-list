@@ -156,6 +156,7 @@ npm-debug.log
 
 # Custom ignore
 task_list/staticfiles/
+task_list/db.sqlite3
 
 # Atom IDE files
 .tags

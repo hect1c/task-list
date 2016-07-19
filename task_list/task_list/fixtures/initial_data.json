@@ -39,5 +39,96 @@
       "created_at": "2016-07-07T18:25:43.511Z",
       "updated_at": "2016-07-07T18:25:43.511Z"
     }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 2,
+    "fields": {
+      "name": "Task 2 Dummy",
+      "description": "Here is an example of task 2 description dummy.",
+      "created_by": 1,
+      "updated_by": 1,
+      "status": false,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 3,
+    "fields": {
+      "name": "Task 3 Dummy",
+      "description": "Here is an example of task 3 description dummy.",
+      "created_by": 1,
+      "updated_by": 1,
+      "status": true,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 4,
+    "fields": {
+      "name": "Task 4 Dummy",
+      "description": "Here is an example of task 4 description dummy.",
+      "created_by": 2,
+      "updated_by": 2,
+      "status": false,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 5,
+    "fields": {
+      "name": "Task 5 Dummy",
+      "description": "Here is an example of task 5 description dummy.",
+      "created_by": 2,
+      "updated_by": 2,
+      "status": false,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 6,
+    "fields": {
+      "name": "Task 6 Dummy",
+      "description": "Here is an example of task 6 description dummy.",
+      "created_by": 2,
+      "updated_by": 2,
+      "status": true,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 7,
+    "fields": {
+      "name": "Task 7 Dummy",
+      "description": "Here is an example of task 7 description dummy.",
+      "created_by": 2,
+      "updated_by": 2,
+      "status": true,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
+  },
+  {
+    "model": "task_list.Task",
+    "pk": 8,
+    "fields": {
+      "name": "Task 8 Dummy",
+      "description": "Here is an example of task 8 description dummy.",
+      "created_by": 2,
+      "updated_by": 2,
+      "status": true,
+      "created_at": "2016-07-07T18:25:43.511Z",
+      "updated_at": "2016-07-07T18:25:43.511Z"
+    }
   }
 ]
