@@ -174,7 +174,12 @@
      * @memberOf task_list.auth.services.Auth
      */
     function setAuthenticatedAccount(account) {
-      $cookies.put('authenticatedAccount', JSON.stringify(account));
+      //set cookie expiration
+      var expireDate = new Date();
+      expireDate.setDate(expireDate.getDate() + 1 );
+
+      //set cookie
+      $cookies.put('authenticatedAccount', JSON.stringify(account), {'expires' : expireDate});
     }
 
     /**
