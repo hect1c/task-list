@@ -4,6 +4,7 @@
   "description": "Task List App",
   "main": "index.js",
   "scripts": {
+    "start": "chmod +x ./scripts/run.sh && ./scripts/run.sh",
     "test": "chmod +x ./scripts/test.sh && ./scripts/test.sh",
     "postinstall": "chmod +x ./scripts/postInstall.sh && ./scripts/postInstall.sh"
   },
